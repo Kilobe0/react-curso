@@ -1,5 +1,13 @@
 .Cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: var(--preto);
+    color: var(--cinza);
+}
+
+.Cabecalho a {
+    text-decoration: none;
     color: var(--cinza);
 }
 
