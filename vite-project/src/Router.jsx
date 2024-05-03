@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 
-import { Inicial, SobreNos } from "./pages";
+import { Inicial, SobreNos, PageNotFound } from "./pages";
 import { LayoutPadrao } from "./layouts";
 
 const Router = () => {
@@ -9,6 +9,7 @@ const Router = () => {
       <Route path="/" element={<LayoutPadrao />}>
         <Route path="/" element={<Inicial />} />
         <Route path="/sobre-nos" element={<SobreNos />} />
+        <Route path="*" element={<PageNotFound />} />
       </Route>
     </Routes>
   );
