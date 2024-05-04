@@ -27,7 +27,7 @@ const FormCriarTarefa = () => {
   return (
     <form className={style.FormCriarTarefa} onSubmit={submeterFormulario}>
       <CampoTexto value={nomeTarefa} onChange={onChangeNomeTarefa} />
-      <Botao texto="+" />
+      <Botao texto="+" tipo={TIPO_BOTAO.PRIMARIO} />
     </form>
   );
 };
