@@ -36,12 +36,16 @@ export const AppContextProvider = (props) => {
 
   const editarTarefa = (idTarefa, novoNome) => {
     setTarefas((estadoAtual) => {
-      return estadoAtual.map(tarefa => {
-        if (tarefa.id === idTarefa) {
-          return { ...tarefa, nome: novoNome };
-        }
-        return tarefa;
+      const tarefasAtualizadas = estadoAtual.map((tarefa) => {
+        return tarefa.id === idTarefa
+          ? {
+              ...tarefa,
+              nome: novoNome,
+            }
+          : tarefa;
       });
+
+      return [...tarefasAtualizadas];
     });
   };
 

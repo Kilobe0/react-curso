@@ -1,6 +1,6 @@
 import style from "./ListaTarefasItem.module.css";
 import { Botao, TIPO_BOTAO } from "../../Botao";
-import { CampoTexto } from "../../CampoTexto";
+import { CampoTexto } from "../../../components";
 import { useAppContext } from "../../../hooks";
 import { useState } from "react";
 
@@ -8,33 +8,19 @@ const ListaTarefasItem = (props) => {
   const { id, nome } = props;
 
   const { removerTarefa, editarTarefa } = useAppContext();
-  const [isEditing, setIsEditing] = useState(false);
-  const [novoNome, setNovoNome] = useState(nome);
-
-  const duploClique = () => {
-    setIsEditing(true);
-  };
-
-  const salvarEdicao = () => {
-    editarTarefa(id, novoNome);
-    setIsEditing(false);
-  };
-
-  const manipularEdicao = (event) => {
-    setNovoNome(event.target.value);
-  };
+  const [estaEditando, setEstaEditando] = useState(false);
 
   return (
-    <li className={style.ListaTarefasItem} onDoubleClick={duploClique}>
-      {isEditing ? (
+    <li className={style.ListaTarefasItem}>
+      {estaEditando ? (
         <CampoTexto
-          value={novoNome}
-          onChange={manipularEdicao}
-          onBlur={salvarEdicao}
+          defaultValue={nome}
+          onChange={(event) => editarTarefa(id, event.currentTarget.value)}
+          onBlur={() => setEstaEditando(false)}
           autoFocus
         />
       ) : (
-        <span>{nome}</span>
+        <span onDoubleClick={() => setEstaEditando(true)}>{nome}</span>
       )}
       <Botao
         texto="-"
