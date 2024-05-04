@@ -1,12 +1,12 @@
 import { useState } from "react";
 
-import { Botao, CampoTexto, TIPO_BOTAO } from "../../components";
+import { Botao, CampoTexto, Loading, TIPO_BOTAO } from "../../components";
 import { useAppContext } from "../../hooks";
 
 import style from "./FormCriarTarefa.module.css";
 
 const FormCriarTarefa = () => {
-  const { adicionarTarefa } = useAppContext();
+  const { adicionarTarefa, loadingCriar } = useAppContext();
 
   const [nomeTarefa, setNomeTarefa] = useState();
 
@@ -19,7 +19,7 @@ const FormCriarTarefa = () => {
 
     if (!nomeTarefa) return;
 
-    adicionarTarefa(nomeTarefa);    
+    adicionarTarefa(nomeTarefa);
 
     setNomeTarefa("");
   };
@@ -27,7 +27,7 @@ const FormCriarTarefa = () => {
   return (
     <form className={style.FormCriarTarefa} onSubmit={submeterFormulario}>
       <CampoTexto value={nomeTarefa} onChange={onChangeNomeTarefa} />
-      <Botao texto="+" tipo={TIPO_BOTAO.PRIMARIO} />
+      <Botao texto={loadingCriar ? <Loading/> : '+'} />
     </form>
   );
 };
